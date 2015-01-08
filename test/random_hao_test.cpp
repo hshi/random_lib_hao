@@ -1,8 +1,10 @@
 #include <iostream>
+#include <cmath>
 #include "random_hao.h"
 
 using std::cout;
 using std::endl;
+using std::abs;
 
 #ifdef MPI_HAO
 void uniform_hao_mpi_test()
