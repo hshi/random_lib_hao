@@ -1,6 +1,8 @@
 #include <iostream>
 #include "random_hao.h"
 
+using namespace std;
+
 #ifdef MPI_HAO
 void random_hao_mpi_test();
 #else
@@ -17,9 +19,10 @@ int main(int argc, char** argv)
     random_hao_init(0,1);
 
 #ifdef MPI_HAO
-    //std::cout<<uniform_hao()<<" "<<MPI::COMM_WORLD.Get_rank()<<std::endl;
+    if(MPI::COMM_WORLD.Get_rank()==0) cout<<"\n\n\n=======Testing======="<<endl; 
     random_hao_mpi_test();
 #else
+    cout<<"\n\n\n=======Testing======="<<endl;
     random_hao_serial_test();
 #endif
 
