@@ -1,5 +1,5 @@
-#ifndef RANDOM_HAO
-#define RANDOM_HAO
+#ifndef RANDOM_HAO_H
+#define RANDOM_HAO_H
 
 #define SIMPLE_SPRNG
 
