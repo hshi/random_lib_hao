@@ -3,3 +3,4 @@ random_lib_hao
 
 c++ random library, it is a wrap to use SPRNG random number generator.
 
+This project is licensed under the terms of the MIT license.
