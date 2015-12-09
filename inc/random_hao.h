@@ -11,6 +11,8 @@
 #include "sprng.h"
 
 void random_hao_init(int seed=985456376, int gtype=1);
+void random_hao_save();
+void random_hao_read();
 double uniform_hao();
 double gaussian_hao();
 

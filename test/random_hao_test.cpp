@@ -2,9 +2,39 @@
 #include <cmath>
 #include "random_hao.h"
 
-using std::cout;
-using std::endl;
-using std::abs;
+using namespace std;
+
+void random_checkpoint_test()
+{
+    int L=10; int L_check=5;
+    double ran[L],ran_check[L];
+
+    random_hao_init();
+    for(int i=0;i<L;i++) ran[i]=uniform_hao();
+
+    random_hao_init();
+    for(int i=0;i<L_check;i++) ran_check[i]=uniform_hao();
+    random_hao_save();
+    for(int i=0; i<100; i++) uniform_hao();
+    random_hao_init(-1,1);  // it is the same with: random_hao_read();
+    for(int i=L_check;i<L;i++) ran_check[i]=uniform_hao();
+
+    int flag=0;
+    for(int i=0;i<L;i++) 
+    {
+        if( abs( ran[i]-ran_check[i] ) > 1e-12 ) flag++;
+    }
+
+    int rank=0;
+#ifdef MPI_HAO
+    MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+#endif
+    string filename="random_checkpoint_"+ to_string(rank) +".dat";
+    remove( filename.c_str() );
+    if(flag!=0) cout<<"Warning!!!! Random_checkpoint failed the test! "<<rank<<endl;
+    if(rank==0) cout<<"If there is no warning, Random_hao passed the checkpoint test. "<<endl;
+}
+
 
 #ifdef MPI_HAO
 void uniform_hao_mpi_test()
@@ -60,6 +90,7 @@ void gaussian_hao_mpi_test()
 
 void random_hao_mpi_test()
 {
+    random_checkpoint_test();
     uniform_hao_mpi_test();
     gaussian_hao_mpi_test();
 }
@@ -99,6 +130,7 @@ void gaussian_hao_serial_test()
 
 void random_hao_serial_test()
 {
+    random_checkpoint_test();
     uniform_hao_serial_test();
     gaussian_hao_serial_test();
 }

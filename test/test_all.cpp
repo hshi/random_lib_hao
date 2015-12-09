@@ -16,7 +16,7 @@ int main(int argc, char** argv)
     MPI_Init(&argc,&argv);
 #endif
 
-    random_hao_init(0,1);
+    random_hao_init();
 
 #ifdef MPI_HAO
     if(MPI::COMM_WORLD.Get_rank()==0) cout<<"\n\n\n=======Testing======="<<endl; 
