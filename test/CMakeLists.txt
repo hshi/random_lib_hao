@@ -1,9 +1,11 @@
-set(random_test_srcs random_hao_test.cpp test_all.cpp)
+set(test_exe randomtest)
 
-add_executable(randomtest ${random_test_srcs})
+file(GLOB test_srcs "*.cpp")
 
-target_link_libraries(randomtest randomhao)
+add_executable(${test_exe} ${test_srcs})
 
-target_link_libraries(randomtest ${lib_all})
+target_link_libraries(${test_exe} randomhao)
 
-install(TARGETS randomtest  DESTINATION test)
+target_link_libraries(${test_exe} ${lib_all})
+
+install(TARGETS ${test_exe}  DESTINATION test)

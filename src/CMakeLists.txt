@@ -1,5 +1,7 @@
-set(random_srcs random_hao.cpp)
+set(src_lib randomhao)
 
-add_library(randomhao STATIC ${random_srcs})
+file(GLOB srcs "*.cpp")
 
-install(TARGETS randomhao  DESTINATION lib)
+add_library(${src_lib} STATIC ${srcs})
+
+install(TARGETS ${src_lib}  DESTINATION lib)
