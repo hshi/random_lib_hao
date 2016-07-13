@@ -14,15 +14,15 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 #For library
 set(lib_all "")
 
+   #For GMP library
+   find_package(gmp REQUIRED)
+   set(lib_all ${gmp_libraries} ${lib_all})
+
    #For sprng
    find_package(sprng REQUIRED)
    add_definitions(${sprng_definitions})
    include_directories(${sprng_include_dirs})
-   set(lib_all ${lib_all} ${sprng_libraries})
-   
-   #For GMP library
-   find_package(gmp REQUIRED)
-   set(lib_all ${lib_all} ${gmp_libraries})
+   set(lib_all ${sprng_libraries} ${lib_all})
 
 include_directories(inc)
 
