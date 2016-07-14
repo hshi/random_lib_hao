@@ -32,7 +32,7 @@ void random_checkpoint_test()
     string filename="random_checkpoint_"+ to_string(rank) +".dat";
     remove( filename.c_str() );
     if(flag!=0) cout<<"Warning!!!! Random_checkpoint failed the test! "<<rank<<endl;
-    if(rank==0) cout<<"If there is no warning, Random_hao passed the checkpoint test. "<<endl;
+    if(rank==0) cout<<"PASSED! If there is no warning, Random_hao passed the checkpoint test. "<<endl;
 }
 
 
@@ -56,8 +56,8 @@ void uniform_hao_mpi_test()
     {
         //cout<<sumpi/MPI::COMM_WORLD.Get_size()<<endl;
         pi=sumpi/MPI::COMM_WORLD.Get_size();
-        if(abs(pi-3.14159)<0.01) cout<<"Uniform_hao passed the mpi test!\n";
-        else cout<<"Warning!!!!Uniform_hao failed the mpi test!\n";
+        if(abs(pi-3.14159)<0.01) cout<<"PASSED! Uniform_hao passed the mpi test!"<<endl;
+        else cout<<"Warning!!!!Uniform_hao failed the mpi test!"<<endl;
     }
 }
 
@@ -83,8 +83,8 @@ void gaussian_hao_mpi_test()
         //cout<<sumvar/MPI::COMM_WORLD.Get_size()<<endl;
         mean=summean/MPI::COMM_WORLD.Get_size();
         var=sumvar/MPI::COMM_WORLD.Get_size();
-        if(abs(mean-0)<0.01&&abs(var-1)<0.01) cout<<"Gaussian_hao passed the mpi test!\n";
-        else cout<<"Warning!!!!Gaussian_hao failed the mpi test!\n";
+        if(abs(mean-0)<0.01&&abs(var-1)<0.01) cout<<"PASSED! Gaussian_hao passed the mpi test!"<<endl;
+        else cout<<"Warning!!!!Gaussian_hao failed the mpi test!"<<endl;
     }
 }
 
@@ -109,8 +109,8 @@ void uniform_hao_serial_test()
         if((x*x+y*y)<=1.0) incircle++;
     }
     pi=(incircle*4.0)/(L*1.0);
-    if(abs(pi-3.14159)<0.01) cout<<"Uniform_hao passed the serial test!\n";
-    else cout<<"Warning!!!!Uniform_hao failed the serial test!\n";
+    if(abs(pi-3.14159)<0.01) cout<<"PASSED! Uniform_hao passed the serial test!"<<endl;
+    else cout<<"Warning!!!!Uniform_hao failed the serial test!"<<endl;
 }
 
 void gaussian_hao_serial_test()
@@ -124,8 +124,8 @@ void gaussian_hao_serial_test()
         var+=tmp*tmp; 
     }
     mean=mean/L; var=var/L;
-    if(abs(mean-0)<0.01&&abs(var-1)<0.01) cout<<"Gaussian_hao passed the serial test!\n";
-    else cout<<"Warning!!!!Gaussian_hao failed the serial test!\n";
+    if(abs(mean-0)<0.01&&abs(var-1)<0.01) cout<<"PASSED! Gaussian_hao passed the serial test!"<<endl;
+    else cout<<"Warning!!!!Gaussian_hao failed the serial test!"<<endl;
 }
 
 void random_hao_serial_test()
