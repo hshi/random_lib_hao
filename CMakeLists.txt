@@ -11,6 +11,8 @@ add_definitions(${COMPILER_EXTRA_DEF})
 #For c++ flag
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
+include_directories(inc)
+
 #For library
 set(lib_all "")
 
@@ -23,8 +25,6 @@ set(lib_all "")
    add_definitions(${sprng_definitions})
    include_directories(${sprng_include_dirs})
    set(lib_all ${sprng_libraries} ${lib_all})
-
-include_directories(inc)
 
 add_subdirectory(inc)
 
