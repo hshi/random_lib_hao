@@ -1,5 +1,6 @@
 #include <stdio.h>
-#include <math.h> 
+#include <math.h>
+#include <stdlib.h> 
 #include <string>
 #include "random_hao.h"
 
@@ -63,6 +64,22 @@ void random_hao_save()
     free(bytes);	
 }
 
+void random_hao_backup()
+{
+    int rank=0;
+#ifdef MPI_HAO
+    MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+    MPI_Barrier(MPI_COMM_WORLD);
+#endif
+
+    //Use MPI_Barrier before and after, make sure all seeds has been generated and has not been removed.
+    if(rank == 0) system("mkdir -p random.bk"); 
+    if(rank == 0) system("mv random_checkpoint* random.bk"); 
+
+#ifdef MPI_HAO
+    MPI_Barrier(MPI_COMM_WORLD);
+#endif
+}
 
 double uniform_hao()
 {
